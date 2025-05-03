@@ -16,7 +16,7 @@ Layout/IndentationStyle:
   Enabled: true
   Style: space
 
-Layout/AlignParameters:
+Layout/ParameterAlignment:
   EnforcedStyle: with_fixed_indentation
 
 Layout/BlockAlignment:
@@ -33,7 +33,7 @@ Layout/IndentationWidth:
 
 Layout/TrailingWhitespace:
   Enabled: true
-  Severity: error
+  Severity: warning
 
 Layout/TrailingEmptyLines:
   Enabled: true
@@ -41,10 +41,6 @@ Layout/TrailingEmptyLines:
 
 Layout/EmptyLines:
   Enabled: true
-
-Layout/EmptyLinesAroundClassBody:
-  Enabled: true
-  EnforcedStyle: empty_lines
 
 Style/StringLiterals:
   Description: "Enforce the use of single quotes except when string contains interpolation"
