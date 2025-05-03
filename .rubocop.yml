@@ -1,0 +1,37 @@
+# Omakase Ruby styling for Rails
+inherit_gem: { rubocop-rails-omakase: rubocop.yml }
+
+# Overwrite or add rules to create your own house style
+#
+# # Use `[a, [b, c]]` not `[ a, [ b, c ] ]`
+Layout/SpaceInsideArrayLiteralBrackets:
+  Enabled: false
+
+Layout/IndentationWidth:
+  Enabled: true
+Layout/IndentationConsistency:
+  Enabled: true
+
+Style/StringLiterals:
+  Description: "Enforce the use of single quotes except when string contains interpolation"
+  Enabled: true
+  EnforcedStyle: single_quotes
+  SupportedStyles:
+    - single_quotes
+    - double_quotes
+  ConsistentQuotesInMultiline: true
+
+Style/PercentLiteralDelimiters:
+  Description: "Use `%`-literal delimiters consistently"
+  Enabled: true
+  PreferredDelimiters:
+    "%": "()"
+    "%i": "[]"
+    "%I": "[]"
+    "%q": "()"
+    "%Q": "()"
+    "%r": "{}"
+    "%s": "()"
+    "%w": "[]"
+    "%W": "[]"
+    "%x": "()"
