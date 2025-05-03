@@ -4,8 +4,24 @@ inherit_gem: { rubocop-rails-omakase: rubocop.yml }
 # Overwrite or add rules to create your own house style
 #
 # # Use `[a, [b, c]]` not `[ a, [ b, c ] ]`
+RSpec/StringLiterals:
+  Enabled: true
+  EnforcedStyle: single_quotes
+  Severity: warning
+
 Layout/SpaceInsideArrayLiteralBrackets:
   Enabled: false
+
+Layout/IndentationStyle:
+  Enabled: true
+  Style: space
+
+Layout/AlignParameters:
+  EnforcedStyle: with_fixed_indentation
+
+Layout/BlockAlignment:
+  Enabled: true
+  EnforcedStyle: each
 
 Layout/IndentationConsistency:
   Enabled: true
