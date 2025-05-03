@@ -1,5 +1,4 @@
 class Evm::ChainRpc
-
   CHAINS = {
     ethereum: {
       mainnet: 'https://mainnet.infura.io/v3/',
@@ -22,5 +21,4 @@ class Evm::ChainRpc
   def self.resolve(name)
     CHAINS[name.to_sym] || raise(ArgumentError, "unsupported chain: #{name}")
   end
-
 end

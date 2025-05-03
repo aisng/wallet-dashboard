@@ -1,5 +1,4 @@
 class Evm::Client
-
   attr_reader :client
 
   def initialize(rpc_url)
@@ -54,5 +53,4 @@ class Evm::Client
   def address_valid?(address)
     raise ArgumentError, "#{self.class} invalid address" unless address.match(/^(0x)?[0-9a-fA-F]{40}$/) && address.length == 42
   end
-
 end
