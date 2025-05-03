@@ -21,6 +21,9 @@ gem 'jbuilder'
 # gem "bcrypt", "~> 3.1.7"
 
 gem 'faraday'
+gem 'public_suffix', '~> 6.0.2'
+gem 'net-imap', '~> 0.5.8'
+gem 'psych', '~> 5.2.4'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[ windows jruby ]
@@ -55,6 +58,10 @@ group :development, :test do
   gem 'ruby-lsp'
   gem 'rspec-rails', git: 'https://github.com/rspec/rspec-rails'
   gem 'webmock'
+  gem 'rspec-expectations', '~> 3.13.4'
+  gem 'rspec-mocks', '~> 3.13.3'
+  gem 'rspec-support', '~> 3.13.3'
+  gem 'selenium-webdriver', '~> 4.32.0'
 end
 
 group :development do
@@ -65,5 +72,4 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
-  gem 'selenium-webdriver'
 end
