@@ -11,4 +11,16 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  # root 'dashboard/dashboard#index'
+  #
+  # resources :dashboard, only: [] do
+  #   collection do
+  #     get 'index'
+  #     post 'index'
+  #   end
+  # end
+
+  root 'dashboard#index'
+  get 'index', to: 'dashboard#index', as: 'dashboard_index'
+  post 'index', to: 'dashboard#index'
 end
