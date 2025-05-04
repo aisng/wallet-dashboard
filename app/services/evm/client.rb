@@ -30,10 +30,6 @@ class Evm::Client
 
   private
 
-  def api_key
-    ENV.fetch('INFURA_API_KEY')
-  end
-
   def request(method, *params)
     response = @client.post do |req|
       req.headers['Content-Type'] = 'application/json'
