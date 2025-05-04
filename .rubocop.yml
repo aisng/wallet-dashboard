@@ -9,6 +9,19 @@ RSpec/StringLiterals:
   EnforcedStyle: single_quotes
   Severity: warning
 
+RSpec/IndentationConsistency:
+  Enabled: true
+  EnforcedStyle: normal
+
+RSpec/IndentationWidth:
+  Enabled: true
+  Width: 2
+
+Layout/HashAlignment:
+  Enabled: true
+  EnforcedHashRocketStyle: key
+  EnforcedColonStyle: key
+
 Layout/SpaceInsideArrayLiteralBrackets:
   Enabled: false
 
