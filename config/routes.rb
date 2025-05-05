@@ -22,5 +22,5 @@ Rails.application.routes.draw do
 
   root 'dashboard#index'
   get 'index', to: 'dashboard#index', as: 'dashboard_index'
-  post 'index', to: 'dashboard#index'
+  post 'search', to: 'dashboard#search', as: 'dashboard_search'
 end
