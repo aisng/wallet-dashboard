@@ -6,12 +6,12 @@ RSpec.describe DashboardPresenter do
   describe '#rpc_methods' do
     let(:methods) do
       {
-      get_balance: 'eth_getBalance',
-      get_transaction_count: 'eth_getTransactionCount'
+      'eth_getBalance' => :balance,
+      'eth_getTransactionCount' => :tx_count
     }
     end
 
-    before { stub_const('Evm::Constants::METHODS', methods) }
+    before { stub_const('Evm::Constants::RPC_METHOD_MAP', methods) }
     it 'returns an array of hashes with labels and methods' do
       expect(subject.rpc_methods).to match_array([
           { label: 'Balance', method: 'eth_getBalance' },

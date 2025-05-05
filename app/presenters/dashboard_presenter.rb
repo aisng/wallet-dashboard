@@ -1,17 +1,17 @@
 class DashboardPresenter
   def initialize
-    @methods = Evm::Constants::METHODS
-    @chains = Evm::ChainRpc
+    @methods = Evm::Constants::RPC_METHOD_MAP
+    @chains = Evm::ChainRpc::CHAINS
   end
 
   def rpc_methods
-    @methods.map do |key, val|
-      label = key.to_s.gsub('get_', '').gsub('_', ' ').capitalize
-      { label: label, method: val }
+    @methods.keys.map do |key|
+      label = key.gsub('eth_get', '').gsub('eth', '').titleize.humanize
+      { label: label, method: key }
     end
   end
 
   def available_chains
-    Evm::ChainRpc::CHAINS.keys.map { |c| c.to_s.capitalize }
+    @chains.keys.map { |c| c.to_s.capitalize }
   end
 end
