@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rspec/rspec-rails
-  revision: 45fa1fb429215ed79119c069fda558c4f765457f
+  revision: 16f8c9d24b73d79b0e4134b5e1389a83a687d316
   specs:
     rspec-rails (8.1.0.pre)
       actionpack (>= 7.2)
@@ -235,8 +235,8 @@ GEM
       nio4r (~> 2.0)
     raabro (1.4.0)
     racc (1.8.1)
-    rack (3.1.13)
-    rack-session (2.1.0)
+    rack (3.1.14)
+    rack-session (2.1.1)
       base64 (>= 0.1.0)
       rack (>= 3.0.0)
     rack-test (2.2.0)
