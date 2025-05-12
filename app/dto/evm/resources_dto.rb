@@ -12,15 +12,15 @@ class Evm::ResourcesDto
 
   def to_h
     {
-      'methods' => @methods,
-      'chains' => @chains
+      'methods' => methods,
+      'chains' => chains
     }
   end
 
   private
 
   def self.format_methods(methods)
-    methods.map { |_, value| value }
+    methods.map { |key, value| key.to_s }
   end
 
   def self.format_chains(chains)
