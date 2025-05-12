@@ -1,6 +1,4 @@
 class Evm::Client
-  attr_reader :client
-
   def initialize(rpc_url)
     @client = Faraday.new(url: rpc_url) do |c|
       c.request :json
@@ -9,23 +7,26 @@ class Evm::Client
     end
   end
 
-  def balance(address)
+  def balance(address, block_tag)
     address_valid?(address)
-    request(Evm::Methods::GET_BALANCE, address, 'latest')
+    result = request(Evm::Constants::METHODS[:get_balance], address, block_tag)
+    wei_to_ether(from_hex(result))
   end
 
-  def tx_count(address)
+  def tx_count(address, block_tag)
     address_valid?(address)
-    request(Evm::Methods::GET_TRANSACTION_COUNT, address, 'latest')
+    result = request(Evm::Constants::METHODS[:get_transaction_count], address, block_tag)
+    from_hex(result)
   end
 
   def block_number
-    request(Evm::Methods::GET_BLOCK_NUMBER)
+    result = request(Evm::Constants::METHODS[:block_number])
+    from_hex(result)
   end
 
-  def block_by_number(block_number)
-    block_hex = "0x#{block_number.to_s(16)}"
-    request(Evm::Methods::GET_BLOCK_BY_NUMBER, block_hex, true)
+  def block_by_number(block_number, full_transaction)
+    block_hex = to_hex(block_number)
+    request(Evm::Constants::METHODS[:get_block_by_number], block_hex, full_transaction)
   end
 
   private
@@ -46,6 +47,19 @@ class Evm::Client
     response.body['result']
   end
 
+  def wei_to_ether(wei)
+    wei.to_f / 10**18
+  end
+
+  def to_hex(num)
+    num.to_s(16).prepend('0x')
+  end
+
+  def from_hex(hex)
+    hex.to_i(16)
+  end
+
+  # should return bool, reconsider if validation should be here
   def address_valid?(address)
     raise ArgumentError, "#{self.class} invalid address" unless address.match(/^(0x)?[0-9a-fA-F]{40}$/) && address.length == 42
   end

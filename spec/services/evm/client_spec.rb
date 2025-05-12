@@ -5,6 +5,7 @@ RSpec.describe Evm::Client do
 
   let(:rpc_url) { 'http://mainnet-rpc/api_key' }
   let(:wallet_address) { '0x1111111111111111111111111111111111111111' }
+  let(:block_tag) { 'latest' }
 
   let(:request) do
     {
@@ -41,15 +42,15 @@ RSpec.describe Evm::Client do
     end
 
     describe '#balance' do
-      subject { subject_instance.balance(wallet_address) }
+      subject { subject_instance.balance(wallet_address, block_tag) }
 
-      let(:result) { '0x1' }
+      let(:result) { '0xde0b6b3a7640000' }
       let(:method) { 'eth_getBalance' }
-      let(:params) { [wallet_address, 'latest'] }
+      let(:params) { [wallet_address, block_tag] }
 
       context 'with wallet address valid' do
-        it 'returns balance in hexadecimal' do
-          expect(subject.to_i(16)).to eq(1)
+        it 'returns balance as decimal in eth' do
+          expect(subject).to eq(1)
         end
       end
 
@@ -61,15 +62,15 @@ RSpec.describe Evm::Client do
     end
 
     describe '#tx_count' do
-      subject { subject_instance.tx_count(wallet_address) }
+      subject { subject_instance.tx_count(wallet_address, block_tag) }
 
       let(:result) { '0x5' }
       let(:method) { 'eth_getTransactionCount' }
-      let(:params) { [wallet_address, 'latest'] }
+      let(:params) { [wallet_address, block_tag] }
 
       context 'with wallet address valid' do
-        it 'returns transaction count in hexadecimal' do
-          expect(subject.to_i(16)).to eq(5)
+        it 'returns transaction count in decimal' do
+          expect(subject).to eq(5)
         end
       end
 
@@ -87,19 +88,20 @@ RSpec.describe Evm::Client do
       let(:method) { 'eth_blockNumber' }
       let(:params) { [] }
 
-      it 'returns latest block number in hexadecimal' do
-        expect(subject.to_i(16)).to eq(9)
+      it 'returns latest block number in decimal' do
+        expect(subject).to eq(9)
       end
     end
 
     describe '#block_by_number' do
-      subject { subject_instance.block_by_number(block_number) }
+      subject { subject_instance.block_by_number(block_number, full_transaction) }
 
+      let(:full_transaction) { true }
       let(:result) { { hash: '0x123' } }
       let(:block_number) { 2 }
       let(:block_number_hex) { "0x#{block_number.to_s(16)}" }
       let(:method) { 'eth_getBlockByNumber' }
-      let(:params) { [block_number_hex, true] }
+      let(:params) { [block_number_hex, full_transaction] }
 
       it 'returns block information' do
         expect(subject).to include('hash' => '0x123')
