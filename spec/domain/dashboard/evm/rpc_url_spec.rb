@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Dashboard::ResolveRpc do
+RSpec.describe Dashboard::Evm::RpcUrl do
   describe '.for' do
     subject { described_class.for(chain, testnet) }
 
@@ -8,20 +8,12 @@ RSpec.describe Dashboard::ResolveRpc do
     let(:testnet) { false }
     let(:api_key) { 'secret' }
 
-    before { allow(ENV).to receive(:fetch).with('INFURA_API_KEY').and_return(api_key) }
+    before do
+      allow(ENV).to receive(:fetch).with('INFURA_API_KEY').and_return(api_key)
+      stub_const('Evm::Constants::CHAINS', { blockchain: { testnet: 'https://testnet-rpc/', mainnet: 'https://mainnet-rpc/' } })
+    end
 
     context 'when chain is found' do
-      before do
-        allow(Evm::ChainRpc)
-            .to receive(:resolve)
-            .with(chain)
-            .and_return(
-              {
-                  testnet: 'https://testnet-rpc/',
-                  mainnet: 'https://mainnet-rpc/'
-              }
-            )
-      end
       context 'and testnet is false' do
         it 'returns mainnet rpc with api key appended' do
           expect(subject).to eq('https://mainnet-rpc/secret')
@@ -30,6 +22,7 @@ RSpec.describe Dashboard::ResolveRpc do
 
       context 'and testnet is true' do
         let(:testnet) { true }
+
         it 'returns testnet rpc with api key appended' do
           expect(subject).to eq('https://testnet-rpc/secret')
         end

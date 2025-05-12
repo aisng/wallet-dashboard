@@ -1,4 +1,4 @@
-class Dashboard::ResolveRpc
+class Dashboard::Evm::RpcUrl
   def self.for(chain, testnet)
     resolve(chain, testnet)
   end
@@ -10,7 +10,7 @@ class Dashboard::ResolveRpc
   end
 
   def self.resolve(chain, testnet)
-    chain_data = Evm::ChainRpc.resolve(chain)
+    chain_data = Evm::Constants::CHAINS[chain.to_sym] || raise(ArgumentError, "unsupported chain: #{chain}")
     base_url = testnet ? chain_data[:testnet] : chain_data[:mainnet]
 
     "#{base_url}#{api_key}"
