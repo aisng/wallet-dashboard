@@ -1,4 +1,4 @@
-class Dashboard::Evm::RpcUrl
+class Dashboard::Evm::Endpoint
   def self.for(chain, testnet)
     resolve(chain, testnet)
   end

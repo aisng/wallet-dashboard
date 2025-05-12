@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Dashboard::Evm::RpcUrl do
+RSpec.describe Dashboard::Evm::Endpoint do
   describe '.for' do
     subject { described_class.for(chain, testnet) }
 
