@@ -55,6 +55,10 @@ Layout/TrailingEmptyLines:
 Layout/EmptyLines:
   Enabled: true
 
+Layout/LineLength:
+  Max: 120
+  Severity: warning
+
 Style/StringLiterals:
   Description: "Enforce the use of single quotes except when string contains interpolation"
   Enabled: true
