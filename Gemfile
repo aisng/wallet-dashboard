@@ -23,7 +23,7 @@ gem 'jbuilder'
 gem 'faraday'
 gem 'public_suffix', '~> 6.0.2'
 gem 'net-imap', '~> 0.5.8'
-gem 'psych', '~> 5.2.4'
+gem 'psych', '~> 5.2.6'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[ windows jruby ]
