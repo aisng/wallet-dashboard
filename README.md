@@ -9,4 +9,5 @@ Wrapper around basic EVM RPC methods.
 - [ ] Custom errors for dashboard_controller.rb
 - [ ] Make endpoints RESTful again
 - [ ] Setup logging
+- [ ] Add API auth
 - [ ] Fix namings
