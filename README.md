@@ -1,24 +1,12 @@
-# README
+# Wallet dashboard API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Wrapper around basic EVM RPC methods.
 
-Things you may want to cover:
+## TODO
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- [ ] RSpec to cover Apipie validations in dashboard_controller.rb
+- [ ] Base controller for API
+- [ ] Custom errors for dashboard_controller.rb
+- [ ] Make endpoints RESTful again
+- [ ] Setup logging
+- [ ] Fix namings
