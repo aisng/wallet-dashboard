@@ -13,7 +13,7 @@ RSpec.describe Evm::ResourcesDto  do
   describe '#to_h' do
     it 'returns a hash with methods and chains' do
       expect(subject.to_h).to eq({
-          'methods' => ['eth_getBalance'],
+          'methods' => ['get_balance'],
           'chains' => {
           'blockchain' => {
             'mainnet' => 'rpc-url'
