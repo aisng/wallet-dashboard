@@ -230,7 +230,7 @@ GEM
       activesupport (>= 7.0.0)
       rack
       railties (>= 7.0.0)
-    psych (5.2.4)
+    psych (5.2.6)
       date
       stringio
     public_suffix (6.0.2)
@@ -434,7 +434,7 @@ DEPENDENCIES
   kamal
   net-imap (~> 0.5.8)
   propshaft
-  psych (~> 5.2.4)
+  psych (~> 5.2.6)
   public_suffix (~> 6.0.2)
   puma (>= 5.0)
   rails (~> 8.0.2)
