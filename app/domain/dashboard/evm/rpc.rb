@@ -33,7 +33,7 @@ class Dashboard::Evm::Rpc
   private
 
   def rpc_url
-    Dashboard::Evm::RpcUrl.for(chain, testnet)
+    Dashboard::Evm::Endpoint.for(chain, testnet)
   end
 
   def client
