@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe Api::V1::DashboardController, type: :controller  do
-  describe 'GET #index' do
+RSpec.describe Api::V1::RpcController, type: :controller  do
+  describe 'GET #resources' do
     it 'calls Evm:ResourcesDto and returns 200' do
       expect(Evm::ResourcesDto).to receive(:from_constants)
       get :index
@@ -9,7 +9,7 @@ RSpec.describe Api::V1::DashboardController, type: :controller  do
     end
   end
 
-  describe 'POST #rpc_action' do
+  describe 'POST #call' do
     let(:dto) { instance_double(Evm::RpcDto, valid?: true) }
 
     context 'with valid parameters' do

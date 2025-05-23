@@ -15,8 +15,12 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      get 'dashboard', to: 'dashboard#index'
-      post 'dashboard', to: 'dashboard#rpc_action'
+      namespace :rpc do
+        get 'resources', to: 'resources'
+        # post 'rpc', to: 'call'
+        post ':chain/balance/:address', to: 'balance'
+        post ':chain/tx_count/:address', to: 'tx_count'
+      end
     end
   end
 end
