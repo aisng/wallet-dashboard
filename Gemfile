@@ -62,7 +62,7 @@ group :development, :test do
   gem 'rspec-expectations', '~> 3.13.4'
   gem 'rspec-mocks', '~> 3.13.3'
   gem 'rspec-support', '~> 3.13.3'
-  gem 'selenium-webdriver', '~> 4.32.0'
+  gem 'selenium-webdriver', '~> 4.33.0'
 end
 
 group :development do
