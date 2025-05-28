@@ -61,7 +61,7 @@ group :development, :test do
   gem 'webmock'
   gem 'rspec-expectations', '~> 3.13.4'
   gem 'rspec-mocks', '~> 3.13.3'
-  gem 'rspec-support', '~> 3.13.3'
+  gem 'rspec-support', '~> 3.13.4'
   gem 'selenium-webdriver', '~> 4.32.0'
 end
 
