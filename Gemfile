@@ -60,7 +60,7 @@ group :development, :test do
   gem 'rspec-rails', git: 'https://github.com/rspec/rspec-rails'
   gem 'webmock'
   gem 'rspec-expectations', '~> 3.13.4'
-  gem 'rspec-mocks', '~> 3.13.3'
+  gem 'rspec-mocks', '~> 3.13.5'
   gem 'rspec-support', '~> 3.13.3'
   gem 'selenium-webdriver', '~> 4.32.0'
 end
