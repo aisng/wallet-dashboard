@@ -17,9 +17,11 @@ Rails.application.routes.draw do
     namespace :v1 do
       namespace :rpc do
         get 'resources', to: 'resources'
-        # post 'rpc', to: 'call'
+        post 'call', to: 'call'
         post ':chain/balance/:address', to: 'balance'
         post ':chain/tx_count/:address', to: 'tx_count'
+        post ':chain/block/:number', to: 'block_by_number'
+        get ':chain/current_block', to: 'block_number'
       end
     end
   end
