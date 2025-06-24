@@ -7,6 +7,7 @@ class Api::V1::RpcController < ApplicationController
   api :GET, '/api/v1/rpc/resources', 'Get available chains and RPC methods'
   def resources
     resources = Evm::ResourcesDto.from_constants # TODO: shouldn't be only for evm
+
     render json: resources.to_h
   end
 
@@ -33,6 +34,7 @@ class Api::V1::RpcController < ApplicationController
     return render json: error_response(dto), status: :bad_request unless dto.valid?
 
     result = Blockchain::Evm::Rpc.for(dto)
+
     render json: success_response(dto, result)
   end
 
@@ -42,16 +44,17 @@ class Api::V1::RpcController < ApplicationController
   param :testnet, :bool, in: :query, required: false, desc: 'Flag to indicate if the testnet is used', allow_blank: true
   param :block_tag, String, in: :query, required: false, desc: 'Block tag (e.g. latest) or block number in decimal', allow_blank: true
   def balance
-    dto = Evm::RpcDto.new(balance_params.merge(method: :get_balance))
+    dto = Evm::RpcDto.new(
+      chain: address_params[:chain],
+      address: address_params[:address],
+      testnet: address_params[:testnet],
+      block_tag: address_params[:block_tag],
+      method: :get_balance
+    )
+
     return render json: error_response(dto), status: :bad_request unless dto.valid?
 
-    result = Blockchain::Evm::Rpc.for(
-      chain: dto.chain,
-      method: dto.method,
-      testnet: dto.testnet,
-      address: dto.address,
-      block_tag: dto.block_tag,
-    )
+    result = Blockchain::Evm::Rpc.for(dto)
 
     render json: success_response(dto, result)
   end
@@ -62,16 +65,17 @@ class Api::V1::RpcController < ApplicationController
   param :testnet, :bool, in: :query, required: false, desc: 'Flag to indicate if the testnet is used', allow_blank: true
   param :block_tag, String, in: :query, required: false, desc: 'Block tag (e.g. latest) or block number in decimal', allow_blank: true
   def tx_count
-    dto = Evm::RpcDto.new(tx_count_params.merge(method: :get_transaction_count))
+    dto = Evm::RpcDto.new(
+      chain: tx_count_params[:chain],
+      address: tx_count_params[:address],
+      testnet: tx_count_params[:testnet],
+      block_tag: tx_count_params[:block_tag],
+      method: :get_transaction_count
+    )
+
     return render json: error_response(dto), status: :bad_request unless dto.valid?
 
-    result = Blockchain::Evm::Rpc.for(
-      chain: dto.chain,
-      method: dto.method,
-      testnet: dto.testnet,
-      address: dto.address,
-      block_tag: dto.block_tag
-    )
+    result = Blockchain::Evm::Rpc.for(dto)
 
     render json: success_response(dto, result)
   end
@@ -80,15 +84,15 @@ class Api::V1::RpcController < ApplicationController
   param :chain, String, required: true, in: :path, desc: 'Blockchain name (e.g. Ethereum)'
   param :testnet, :bool, required: false, in: :query, desc: 'Flag to indicate if the testnet is used', allow_blank: true
   def block_number
-    dto = Evm::RpcDto.new(block_number_params.merge(method: :block_number))
-    return render json: error_response(dto), status: :bad_request unless dto.valid?
-
-    result = Blockchain::Evm::Rpc.for(
-      chain: dto.chain,
-      method: dto.method,
-      testnet: dto.testnet
+    dto = Evm::RpcDto.new(
+      chain: block_number_params[:chain],
+      testnet: block_number_params[:testnet],
+      method: :block_number
     )
 
+    return render json: error_response(dto), status: :bad_request unless dto.valid?
+
+    result = Blockchain::Evm::Rpc.for(dto)
     render json: success_response(dto, result)
   end
 
@@ -98,15 +102,16 @@ class Api::V1::RpcController < ApplicationController
   param :testnet, :bool, in: :query, required: false, desc: 'Flag to indicate if the testnet is used', allow_blank: true
   param :full_transaction, :bool, in: :query, required: false, desc: 'Flag to indicate if full transaction details are required', allow_blank: true
   def block_by_number
-    dto = Evm::RpcDto.new(block_by_number_params.merge(method: :get_block_by_number))
+    dto = Evm::RpcDto.new(
+      chain: block_by_number_params[:chain],
+      block_number: block_by_number_params[:block_number],
+      testnet: block_by_number_params[:testnet],
+      full_transaction: block_by_number_params[:full_transaction],
+    )
+
     return render json: error_response(dto), status: :bad_request unless dto.valid?
 
-    result = Blockchain::Evm::Rpc.for(
-      chain: dto.chain,
-      method: dto.method,
-      testnet: dto.testnet,
-      block_number: dto.block_number,
-    )
+    result = Blockchain::Evm::Rpc.for(dto)
 
     render json: success_response(dto, result)
   end
