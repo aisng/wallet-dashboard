@@ -20,7 +20,7 @@ Rails.application.routes.draw do
         post 'call', to: 'call'
         post ':chain/balance/:address', to: 'balance'
         post ':chain/tx_count/:address', to: 'tx_count'
-        post ':chain/block/:number', to: 'block_by_number'
+        post ':chain/block/:block_number', to: 'block_by_number'
         get ':chain/current_block', to: 'block_number'
       end
     end
