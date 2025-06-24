@@ -102,7 +102,6 @@ class Api::V1::RpcController < ApplicationController
   param :testnet, :bool, in: :query, required: false, desc: 'Flag to indicate if the testnet is used', allow_blank: true
   param :full_transaction, :bool, in: :query, required: false, desc: 'Flag to indicate if full transaction details are required', allow_blank: true
   def block_by_number
-    puts "---- block_by_number_params: #{block_by_number_params.inspect}"
     dto = Evm::RpcDto.new(
       chain: block_by_number_params[:chain],
       block_number: block_by_number_params[:block_number],
