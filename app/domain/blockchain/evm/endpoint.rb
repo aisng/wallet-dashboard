@@ -1,4 +1,4 @@
-class Dashboard::Evm::Endpoint
+class Blockchain::Evm::Endpoint
   def self.for(chain, testnet)
     resolve(chain, testnet)
   end

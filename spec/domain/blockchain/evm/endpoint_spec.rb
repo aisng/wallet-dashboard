@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Dashboard::Evm::Endpoint do
+RSpec.describe Blockchain::Evm::Endpoint do
   describe '.for' do
     subject { described_class.for(chain, testnet) }
 
