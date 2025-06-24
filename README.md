@@ -4,11 +4,11 @@ Wrapper around basic EVM RPC methods.
 
 ## TODO
 
-- [ ] RSpec to cover Apipie validations in dashboard_controller.rb
+- [x] Fix namings
+- [x] Refactor controller
+- [ ] Rename DTO modules
+- [ ] RSpec for ApplicationController
 - [ ] Base controller for API
-- [ ] Custom errors for dashboard_controller.rb
-- [ ] Fix types for parameters
-- [ ] Make endpoints RESTful again
+- [ ] Custom errors for rpc_controller.rb
 - [ ] Setup logging
 - [ ] Add API auth
-- [ ] Fix namings
