@@ -14,15 +14,24 @@ Layout/HashAlignment:
   EnforcedHashRocketStyle: key
   EnforcedColonStyle: key
 
+Layout/ArgumentAlignment:
+  EnforcedStyle: with_fixed_indentation
+
 Layout/SpaceInsideArrayLiteralBrackets:
   Enabled: false
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+Layout/MultilineOperationIndentation:
+  EnforcedStyle: indented
+
+Layout/ParameterAlignment:
+  EnforcedStyle: with_fixed_indentation
 
 Layout/IndentationStyle:
   Enabled: true
   Style: space
-
-Layout/ParameterAlignment:
-  EnforcedStyle: with_fixed_indentation
 
 Layout/BlockAlignment:
   Enabled: true
