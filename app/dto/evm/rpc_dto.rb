@@ -9,12 +9,12 @@ class Evm::RpcDto
 
   def initialize(
     chain:,
-    testnet:,
     method:,
-    address:,
-    block_tag:,
-    block_number:,
-    full_transaction:
+    testnet: false,
+    address: nil,
+    block_tag: nil,
+    block_number: nil,
+    full_transaction: true
   )
     @chain = chain.to_sym
     @testnet = ActiveModel::Type::Boolean.new.cast(testnet)
