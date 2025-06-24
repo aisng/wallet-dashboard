@@ -1,7 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe Evm::RpcDto do
-  subject { described_class.new(params) }
+  subject do described_class.new(
+      chain: chain,
+      testnet: testnet,
+      method: method,
+      address: address,
+      block_tag: block_tag,
+      block_number: block_number,
+      full_transaction: full_transaction
+  ) end
 
   let(:chain) { 'ethereum' }
   let(:testnet) { 'false' }
@@ -10,18 +18,6 @@ RSpec.describe Evm::RpcDto do
   let(:block_tag) { 'latest' }
   let(:block_number) { '1' }
   let(:full_transaction) { 'true' }
-
-  let(:params) do
-    {
-      chain: chain,
-      testnet: testnet,
-      method: method,
-      address: address,
-      block_tag: block_tag,
-      block_number: block_number,
-      full_transaction: full_transaction
-    }
-  end
 
   shared_examples 'invalid field' do |field, message|
     it "adds an error for '#{field}' with a message '#{message}'" do

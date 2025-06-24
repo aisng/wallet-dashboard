@@ -7,14 +7,22 @@ class Evm::RpcDto
   ADDRESS_REQUIRED_METHODS = %i[get_balance get_transaction_count].freeze
   BLOCK_NUMBER_REQUIRED_METHODS = %i[get_block_by_number].freeze
 
-  def initialize(params = {})
-    @chain = params[:chain].to_sym
-    @testnet = ActiveModel::Type::Boolean.new.cast(params[:testnet])
-    @method = params[:method].to_sym
-    @address = params[:address]
-    @block_tag = params[:block_tag]
-    @block_number = params[:block_number]
-    @full_transaction = ActiveModel::Type::Boolean.new.cast(params[:full_transaction])
+  def initialize(
+    chain:,
+    testnet:,
+    method:,
+    address:,
+    block_tag:,
+    block_number:,
+    full_transaction:
+  )
+    @chain = chain.to_sym
+    @testnet = ActiveModel::Type::Boolean.new.cast(testnet)
+    @method = method.to_sym
+    @address = address
+    @block_tag = block_tag
+    @block_number = block_number
+    @full_transaction = ActiveModel::Type::Boolean.new.cast(full_transaction)
     @errors = {}
   end
 
@@ -59,7 +67,7 @@ class Evm::RpcDto
   def validate_block_number
     return unless BLOCK_NUMBER_REQUIRED_METHODS.include?(@method)
     return add_error(:block_number, 'block number required') if @block_number.blank?
-    add_error(:block_number, 'invalid block number') unless @block_number.is_a?(Integer) && @block_number.positive?
+    add_error(:block_number, 'invalid block number') unless @block_number.to_s.match?(/^\d+$/) && @block_number.to_i.positive?
   end
 
   def validate_full_transaction
