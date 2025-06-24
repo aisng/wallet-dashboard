@@ -52,6 +52,7 @@ class Evm::Client
   end
 
   def to_hex(num)
+    return num.prepend('0x') if num.is_a?(String)
     num.to_s(16).prepend('0x')
   end
 
